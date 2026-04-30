@@ -1,0 +1,59 @@
+# EduAdmin
+
+> A full-featured Learning Management System (LMS) dashboard for online course creators and edtech platforms.
+
+## What is EduAdmin?
+
+EduAdmin is a web-based admin dashboard that allows online educators and content creators to manage their
+entire learning product catalog from a single interface. It is built with React, TypeScript, and Tailwind CSS.
+
+## Key Features
+
+- **Dashboard** — Overview of enrollment activity, performance summaries, and setup progress.
+- **Courses** — Create, manage, and publish online video courses. Filter by status, category, and more.
+- **Live Classes** — Schedule and manage live instructor-led sessions.
+- **Mock Tests** — Create and distribute practice tests with configurable difficulty and scoring.
+- **Test Series** — Bundle multiple mock tests into structured preparation series.
+- **Bundles** — Package multiple products (courses, tests, live classes) into purchasable bundles.
+- **Polls** — Create audience engagement polls for learners.
+- **Tracks** — Define curated learning paths by sequencing multiple products.
+- **Code Labs** — Manage coding challenges and lab environments.
+- **Question Pool** — Centralized repository of questions reusable across tests and quizzes.
+- **Classification** — Categorize and tag content for structured content taxonomy.
+- **Utilities** — Platform tools, configuration helpers, and administrative utilities.
+
+## Technology Stack
+
+- **Framework:** React 18 with TypeScript
+- **Styling:** Tailwind CSS v3
+- **Routing:** React Router DOM v6
+- **UI Components:** Radix UI primitives + shadcn/ui patterns
+- **Icons:** Lucide React
+- **Build Tool:** Vite 7
+
+## Routes
+
+| Route             | Page             |
+|-------------------|------------------|
+| /                 | Dashboard        |
+| /courses          | Courses          |
+| /live-classes     | Live Classes     |
+| /mock-test        | Mock Test        |
+| /test-series      | Test Series      |
+| /bundles          | Bundles          |
+| /poll             | Poll             |
+| /tracks           | Tracks           |
+| /code             | Code Labs        |
+| /more-products    | More Products    |
+| /question-pool    | Question Pool    |
+| /classification   | Classification   |
+| /utilities        | Utilities        |
+
+## Intended Audience
+
+This platform is intended for edtech creators, online educators, coaching institutes, and learning platform
+operators who need a robust backend interface to manage their educational content and learners.
+
+## Licensing
+
+Proprietary. All rights reserved.

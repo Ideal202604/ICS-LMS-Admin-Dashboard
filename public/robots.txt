@@ -1,0 +1,34 @@
+# EduAdmin — robots.txt
+# https://eduadmin.app/
+
+User-agent: *
+Allow: /
+
+# Explicitly allow major crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+# Block common nuisance scrapers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Sitemap location
+Sitemap: https://eduadmin.app/sitemap.xml

@@ -1,0 +1,1 @@
+export { MoreProducts } from "./MoreProducts";
