@@ -21,6 +21,7 @@ const SEARCH_ITEMS = [
   { label: "Learner Support",   path: "/export",            keywords: "learner support export requests help" },
   { label: "Fill Info",         path: "/fill-info",         keywords: "fill info course content sections" },
   { label: "Create Live Class", path: "/create-live-class", keywords: "create live class schedule new event" },
+  { label: "Mock Test Listing", path: "/mock-test-listing", keywords: "mock test listing table sessions courses" },
 ];
 
 function matchItems(query: string) {

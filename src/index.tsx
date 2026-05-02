@@ -23,6 +23,13 @@ import { RecentActivity } from "./screens/RecentActivity";
 import { CreateLiveClass } from "./screens/CreateLiveClass";
 import { CreateLive } from "./screens/CreateLive";
 import { LiveClassesOn } from "./screens/LiveClassesOn";
+// Canonical MockTest screens — V3 variants are the single source of truth
+import { MockTestOverview } from "./screens/MockTestOverviewV3";
+import { MockTestListing } from "./screens/MockTestListing";
+import { CreateMockTest } from "./screens/CreateMockTest";
+import { MockTestBuilder } from "./screens/MockTestBuilder";
+import { MockTestEditor } from "./screens/MockTestEditorV3";
+import { MockTestForm } from "./screens/MockTestForm";
 
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
@@ -50,6 +57,14 @@ createRoot(document.getElementById("app") as HTMLElement).render(
         <Route path="/create-live-class" element={<CreateLiveClass />} />
         <Route path="/create-live" element={<CreateLive />} />
         <Route path="/live-classes-on" element={<LiveClassesOn />} />
+        {/* Canonical single route — V1/V2 variants removed */}
+        <Route path="/mock-test-overview" element={<MockTestOverview />} />
+        <Route path="/mock-test-listing" element={<MockTestListing />} />
+        <Route path="/create-mock-test" element={<CreateMockTest />} />
+        <Route path="/mock-test-builder" element={<MockTestBuilder />} />
+        {/* Canonical editor route — V2 variant removed */}
+        <Route path="/mock-test-editor" element={<MockTestEditor />} />
+        <Route path="/mock-test-form" element={<MockTestForm />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

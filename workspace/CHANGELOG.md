@@ -18,6 +18,21 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+## 2026-05-02 (session 11)
+- Removed duplicate MockTestOverview (V1+V2) and MockTestEditorV2 — 10 files deleted
+- Consolidated `/mock-test-overview` → MockTestOverviewV3, `/mock-test-editor` → MockTestEditorV3
+- Fixed internal routing: sidebar, breadcrumbs, and Create button now use canonical paths
+- Dead routes `/mock-test-overview-v2`, `/mock-test-overview-v3`, `/mock-test-editor-v3` removed from router
+
+## 2026-05-02 (session 10)
+- Fixed TSX generic syntax error: `<DataTable<MockTestRow>` cannot be parsed by TSX as a JSX tag
+- Cast `DataTable` to a typed `React.FC<DataTableProps<MockTestRow>>` alias before using in JSX
+- Modified: `src/screens/MockTestListing/sections/MockTestListingTableSection.tsx`
+
+## 2026-05-02 (session 9)
+- Investigated MockTestListingTableSection syntax error — file was valid, error was stale bundler cache
+- Fixed by restarting dev server (no code changes needed)
+
 ## 2026-05-02 (session 8)
 - Fixed build timeout: `postcss.config.js` had ESM `export default` conflicting with `"type":"module"` in package.json
 - PostCSS/Vite loader stalled on CJS/ESM boundary — converted to `postcss.config.cjs` (unambiguous CJS)
