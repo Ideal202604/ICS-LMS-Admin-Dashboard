@@ -1,26 +1,14 @@
-import { Button } from "../../components/ui/button";
-import { LiveClassesActionPanelSection } from "./sections/LiveClassesActionPanelSection";
 import { AppLayout } from "../../components/shared";
+import { LiveClassSearchToolbarSection } from "./sections/LiveClassSearchToolbarSection";
+import { LiveClassTableSection } from "./sections/LiveClassTableSection";
 
 export const LiveClasses = (): JSX.Element => {
   return (
     <AppLayout className="bg-white">
-      <section className="flex min-w-0 flex-1 flex-col px-[10px] pt-[20px]">
-        <LiveClassesActionPanelSection />
-        <div className="mt-6 flex justify-end px-4 md:px-6 lg:px-8">
-          <Button
-            type="button"
-            className="h-auto gap-2 rounded-lg bg-[#0957a1] px-4 py-2 text-base font-medium text-white transition-all duration-200 hover:bg-[#074d8c] hover:shadow-md active:scale-[0.98]"
-          >
-            <img
-              className="h-5 w-5"
-              alt="Plus"
-              src="https://c.animaapp.com/moju1bkbWY8iET/img/plus.svg"
-            />
-            <span className="[font-family:'Roboto',Helvetica] font-medium leading-6">
-              Create
-            </span>
-          </Button>
+      <section className="flex min-w-0 flex-1 flex-col">
+        <div className="flex flex-col gap-3 px-3 pt-2 md:px-4">
+          <LiveClassSearchToolbarSection />
+          <LiveClassTableSection />
         </div>
       </section>
     </AppLayout>

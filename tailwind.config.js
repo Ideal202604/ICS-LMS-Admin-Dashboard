@@ -11,6 +11,8 @@ module.exports = {
         "body-small-regular": "var(--body-small-regular-font-family)",
         "caption-large-medium": "var(--caption-large-medium-font-family)",
         "caption-small-medium": "var(--caption-small-medium-font-family)",
+        "heading": ["Roboto", "Helvetica"],
+        "menu-text": ["Roboto", "Helvetica"],
         sans: [
           "ui-sans-serif",
           "system-ui",
@@ -21,8 +23,17 @@ module.exports = {
           '"Noto Color Emoji"',
         ],
       },
-      boxShadow: { "shadow-xs": "var(--shadow-xs)" },
+      boxShadow: {
+        "shadow-xs": "var(--shadow-xs)",
+        "shadow-lg": "var(--shadow-lg)",
+      },
       colors: {
+        "app-primary": "var(--app-primary)",
+        "app-secondary": "var(--app-secondary)",
+        "logo-color": "var(--logo-color)",
+        "title": "var(--title)",
+        "subtitle": "var(--subtitle)",
+        "lightness": "var(--lightness)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -79,6 +90,6 @@ module.exports = {
     },
     container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
   darkMode: ["class"],
 };

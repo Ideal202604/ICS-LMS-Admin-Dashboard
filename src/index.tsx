@@ -14,6 +14,15 @@ import { MoreProducts } from "./screens/MoreProducts";
 import { QuestionPool } from "./screens/QuestionPool";
 import { Classification } from "./screens/Classification";
 import { Utilities } from "./screens/Utilities";
+import { Export } from "./screens/Export";
+import { CreateCourse } from "./screens/CreateCourse";
+import { FillInfo } from "./screens/FillInfo";
+import { LessonViewer } from "./screens/LessonViewer";
+import { LiveClassBasic } from "./screens/LiveClassBasic";
+import { RecentActivity } from "./screens/RecentActivity";
+import { CreateLiveClass } from "./screens/CreateLiveClass";
+import { CreateLive } from "./screens/CreateLive";
+import { LiveClassesOn } from "./screens/LiveClassesOn";
 
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
@@ -32,6 +41,15 @@ createRoot(document.getElementById("app") as HTMLElement).render(
         <Route path="/question-pool" element={<QuestionPool />} />
         <Route path="/classification" element={<Classification />} />
         <Route path="/utilities" element={<Utilities />} />
+        <Route path="/export" element={<Export />} />
+        <Route path="/create-course" element={<CreateCourse />} />
+        <Route path="/fill-info" element={<FillInfo />} />
+        <Route path="/lesson-viewer" element={<LessonViewer />} />
+        <Route path="/live-class-basic" element={<LiveClassBasic />} />
+        <Route path="/recent-activity" element={<RecentActivity />} />
+        <Route path="/create-live-class" element={<CreateLiveClass />} />
+        <Route path="/create-live" element={<CreateLive />} />
+        <Route path="/live-classes-on" element={<LiveClassesOn />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

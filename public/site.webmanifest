@@ -1,7 +1,7 @@
 {
-  "name": "EduAdmin — Learning Management Platform",
-  "short_name": "EduAdmin",
-  "description": "Manage courses, live classes, mock tests, test series, bundles, polls, and tracks in one powerful creator dashboard.",
+  "name": "ICS LMS-Admin Dashboard",
+  "short_name": "ICS LMS",
+  "description": "ICS LMS-Admin Dashboard",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -10,15 +10,9 @@
   "categories": ["education", "productivity", "business"],
   "icons": [
     {
-      "src": "https://c.animaapp.com/mojt1gccgC9EQf/img/generated-image-1777524236635.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "https://c.animaapp.com/mojt1gccgC9EQf/img/generated-image-1777524236635.png",
-      "sizes": "512x512",
-      "type": "image/png",
+      "src": "https://c.animaapp.com/mol95gzyy8OtNf/img/ics-global-white-1.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
     }
   ]

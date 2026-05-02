@@ -1,59 +1,66 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, XIcon } from "lucide-react";
 import { Input } from "../ui/input";
 import { ScrollArea } from "../ui/scroll-area";
-import { useSidebar } from "./AppLayout";
+import { useSidebar, NAVBAR_HEIGHT } from "./AppLayout";
 
+/* ─── Icon CDN ──────────────────────────────────────────────────────────── */
+const CDN = "https://c.animaapp.com/mol95gzyy8OtNf/img";
+
+/* ─── Nav data ──────────────────────────────────────────────────────────── */
 const primaryItems = [
   {
-    label: "Get Started",
-    iconSrc: "https://c.animaapp.com/mojway8gcahMoK/img/tabler-icon-trending-up.svg",
+    label:   "Get Started",
+    iconSrc: `${CDN}/tabler-icon-trending-up.svg`,
     iconAlt: "Trending up",
-    route: "/",
+    route:   "/",
   },
   {
-    label: "Dashboard",
-    iconSrc: "https://c.animaapp.com/mojway8gcahMoK/img/tabler-icon-table.svg",
-    iconAlt: "Dashboard table",
-    route: "/",
+    label:   "Dashboard",
+    iconSrc: `${CDN}/tabler-icon-table.svg`,
+    iconAlt: "Dashboard",
+    route:   "/",
   },
 ];
 
 const productChildren = [
-  { label: "Courses", route: "/courses" },
-  { label: "Live Classes", route: "/live-classes" },
-  { label: "Mock Test", route: "/mock-test" },
-  { label: "Test Series", route: "/test-series" },
-  { label: "Bundles", route: "/bundles" },
-  { label: "Batch", route: "/" },
-  { label: "Poll", route: "/poll" },
-  { label: "Tracks", route: "/tracks" },
-  { label: "Code", route: "/code" },
-  { label: "More Products", route: "/more-products" },
-  { label: "Question Pool", route: "/question-pool" },
-  { label: "All Questions", route: "/" },
-  { label: "Classification", route: "/classification" },
-  { label: "Utilities", route: "/utilities" },
+  { label: "Courses",         route: "/courses" },
+  { label: "Live Classes",    route: "/live-classes" },
+  { label: "Mock Test",       route: "/mock-test" },
+  { label: "Test Series",     route: "/test-series" },
+  { label: "Bundles",         route: "/bundles" },
+  { label: "Batch",           route: "/" },
+  { label: "Poll",            route: "/poll" },
+  { label: "Tracks",          route: "/tracks" },
+  { label: "Code",            route: "/code" },
+  { label: "More Products",   route: "/more-products" },
+  { label: "Question Pool",   route: "/question-pool" },
+  { label: "All Questions",   route: "/" },
+  { label: "Classification",  route: "/classification" },
+  { label: "Utilities",       route: "/utilities" },
+  { label: "Learner Support", route: "/export" },
+  { label: "Lesson Viewer",   route: "/lesson-viewer" },
 ];
 
 const secondaryItems = [
-  { label: "Website & Apps", iconSrc: "https://c.animaapp.com/mojway8gcahMoK/img/tabler-icon-app-window.svg", iconAlt: "App window", route: "/" },
-  { label: "Community", iconSrc: "https://c.animaapp.com/mojway8gcahMoK/img/tabler-icon-users.svg", iconAlt: "Users", route: "/" },
-  { label: "Marketing", iconSrc: "https://c.animaapp.com/mojway8gcahMoK/img/tabler-icon-speakerphone.svg", iconAlt: "Speakerphone", route: "/" },
-  { label: "Sales", iconSrc: "https://c.animaapp.com/mojway8gcahMoK/img/tabler-icon-chart-dots-2.svg", iconAlt: "Chart dots", route: "/" },
-  { label: "Users", iconSrc: "https://c.animaapp.com/mojway8gcahMoK/img/tabler-icon-user.svg", iconAlt: "User", route: "/" },
-  { label: "Reports", iconSrc: "https://c.animaapp.com/mojway8gcahMoK/img/tabler-icon-chart-bar.svg", iconAlt: "Chart bar", route: "/" },
-  { label: "Manage", iconSrc: "https://c.animaapp.com/mojway8gcahMoK/img/tabler-icon-briefcase.svg", iconAlt: "Briefcase", route: "/" },
-  { label: "Add - Ons", iconSrc: "https://c.animaapp.com/mojway8gcahMoK/img/tabler-icon-square-rounded-plus.svg", iconAlt: "Square plus", route: "/" },
-  { label: "Security", iconSrc: "https://c.animaapp.com/mojway8gcahMoK/img/tabler-icon-shield-lock.svg", iconAlt: "Shield lock", route: "/" },
-  { label: "Sub Schools", iconSrc: "https://c.animaapp.com/mojway8gcahMoK/img/tabler-icon-school.svg", iconAlt: "School", route: "/" },
-  { label: "Settings", iconSrc: "https://c.animaapp.com/mojway8gcahMoK/img/setting.svg", iconAlt: "Settings", noChevron: true, route: "/" },
+  { label: "Website & Apps", iconSrc: `${CDN}/tabler-icon-app-window.svg`,          iconAlt: "App window",   route: "/" },
+  { label: "Community",      iconSrc: `${CDN}/tabler-icon-users.svg`,                iconAlt: "Users",        route: "/" },
+  { label: "Marketing",      iconSrc: `${CDN}/tabler-icon-speakerphone.svg`,         iconAlt: "Speakerphone", route: "/" },
+  { label: "Sales",          iconSrc: `${CDN}/tabler-icon-chart-dots-2.svg`,         iconAlt: "Chart dots",   route: "/" },
+  { label: "Users",          iconSrc: `${CDN}/tabler-icon-user.svg`,                 iconAlt: "User",         route: "/" },
+  { label: "Reports",        iconSrc: `${CDN}/tabler-icon-chart-bar.svg`,            iconAlt: "Chart bar",    route: "/" },
+  { label: "Manage",         iconSrc: `${CDN}/tabler-icon-briefcase.svg`,            iconAlt: "Briefcase",    route: "/" },
+  { label: "Add - Ons",      iconSrc: `${CDN}/tabler-icon-square-rounded-plus.svg`,  iconAlt: "Square plus",  route: "/" },
+  { label: "Security",       iconSrc: `${CDN}/tabler-icon-shield-lock.svg`,          iconAlt: "Shield lock",  route: "/" },
+  { label: "Sub Schools",    iconSrc: `${CDN}/tabler-icon-school.svg`,               iconAlt: "School",       route: "/" },
+  { label: "Settings",       iconSrc: `${CDN}/setting.svg`,                          iconAlt: "Settings",     route: "/", noChevron: true },
 ];
 
+/* ─── SharedSidebar ─────────────────────────────────────────────────────── */
 export const SharedSidebar = (): JSX.Element => {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const navigate    = useNavigate();
+  const location    = useLocation();
   const currentPath = location.pathname;
   const [productsOpen, setProductsOpen] = useState(true);
   const { collapsed, mobileOpen, closeMobile, toggleCollapsed } = useSidebar();
@@ -69,147 +76,192 @@ export const SharedSidebar = (): JSX.Element => {
 
   return (
     <aside
-      style={{ width: collapsed ? 72 : 292 }}
-      className={`
-        fixed left-0 top-[84px] z-40 flex h-[calc(100vh-84px)] shrink-0 flex-col overflow-hidden bg-[#0957a1] text-white shadow-[0px_0px_4px_#00000040]
-        transition-all duration-300 ease-in-out
-        ${mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
-      `}
+      style={{
+        width:  collapsed ? 64 : 240,
+        top:    NAVBAR_HEIGHT,
+        height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
+      }}
+      className={[
+        "fixed left-0 z-40 flex shrink-0 flex-col",
+        "bg-[#0957a1] text-white",
+        "shadow-[2px_0px_8px_rgba(0,0,0,0.15)]",
+        "transition-[width,transform] duration-300 ease-in-out",
+        mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
+      ].join(" ")}
       aria-label="Main sidebar"
     >
-      {/* ── Top: collapse toggle (desktop) or close (mobile) ── */}
-      <div className={`flex items-center pt-3 pb-1 px-3 ${collapsed ? "justify-center" : "justify-between"}`}>
-        {/* Logo on mobile inside sidebar */}
-        {!collapsed && (
-          <img
-            className="h-6 w-auto lg:hidden"
-            alt="ICS"
-            src="https://c.animaapp.com/mojway8gcahMoK/img/ics-global-white-1.svg"
-          />
-        )}
-        <div className={`flex items-center ${collapsed ? "" : "ml-auto"}`}>
-          {/* Desktop collapse arrow */}
+      {/* ── HEADER ────────────────────────────────────────────────────── */}
+      {!collapsed ? (
+        <div className="flex flex-col gap-3 px-3 pb-3 pt-4 border-b border-white/10">
+          {/* Top row: search + collapse button */}
+          <div className="flex items-center gap-2">
+            {/* Search */}
+            <div className="relative flex-1">
+              <img
+                className="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 z-10 opacity-60"
+                alt="Search"
+                src="https://c.animaapp.com/mol95gzyy8OtNf/img/search.svg"
+              />
+              <Input
+                placeholder="Search"
+                aria-label="Search"
+                className="h-9 w-full rounded-lg border border-white/15 bg-white/10
+                           pl-8 pr-3 [font-family:'Roboto',Helvetica] text-sm font-normal
+                           text-white placeholder:text-white/50
+                           transition-all duration-200
+                           focus-visible:ring-1 focus-visible:ring-white/30 focus-visible:ring-offset-0
+                           focus-visible:bg-white/15 focus-visible:border-white/25"
+              />
+            </div>
+            {/* Collapse (desktop) */}
+            <button
+              type="button"
+              aria-label="Collapse sidebar"
+              onClick={toggleCollapsed}
+              className="hidden lg:flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-white/60 transition-all duration-200 hover:bg-white/10 hover:text-white active:scale-95"
+            >
+              <ChevronLeftIcon className="h-4 w-4" />
+            </button>
+            {/* Close (mobile) */}
+            <button
+              type="button"
+              aria-label="Close sidebar"
+              onClick={closeMobile}
+              className="lg:hidden flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-white/60 hover:bg-white/10 hover:text-white"
+            >
+              <XIcon className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="flex flex-col items-center gap-2 border-b border-white/10 py-3">
           <button
             type="button"
-            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+            aria-label="Expand sidebar"
             onClick={toggleCollapsed}
-            className="hidden lg:flex h-7 w-7 items-center justify-center rounded-md text-white/70 transition-all duration-200 hover:bg-white/15 hover:text-white active:scale-95"
+            className="hidden lg:flex h-8 w-8 items-center justify-center rounded-lg text-white/60 transition-all duration-200 hover:bg-white/10 hover:text-white active:scale-95"
           >
-            {collapsed ? (
-              <ChevronRightIcon className="h-4 w-4" />
-            ) : (
-              <ChevronLeftIcon className="h-4 w-4" />
-            )}
+            <ChevronRightIcon className="h-4 w-4" />
           </button>
-          {/* Mobile close button */}
           <button
             type="button"
             aria-label="Close sidebar"
             onClick={closeMobile}
-            className="lg:hidden flex h-7 w-7 items-center justify-center rounded-md text-white/70 hover:bg-white/15 hover:text-white"
+            className="lg:hidden flex h-8 w-8 items-center justify-center rounded-lg text-white/60 hover:bg-white/10 hover:text-white"
           >
-            <ChevronLeftIcon className="h-4 w-4" />
+            <XIcon className="h-4 w-4" />
           </button>
-        </div>
-      </div>
-
-      {/* ── Search (hidden when collapsed) ── */}
-      {!collapsed && (
-        <div className="px-3 pt-1 pb-2">
-          <div className="relative">
-            <img
-              className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 opacity-80"
-              alt="Search"
-              src="https://c.animaapp.com/mojway8gcahMoK/img/search.svg"
-            />
-            <Input
-              defaultValue=""
-              placeholder="Search"
-              className="h-[42px] rounded-[10px] border border-white/30 bg-white/20 pl-10 pr-3 [font-family:'Roboto',Helvetica] text-sm font-normal text-white placeholder:text-white/70 transition-all duration-200 focus-visible:ring-1 focus-visible:ring-white/50 focus-visible:ring-offset-0 focus-visible:bg-white/25 focus-visible:border-white/50"
-            />
-          </div>
         </div>
       )}
 
-      {/* ── Scrollable nav ── */}
+      {/* ── SCROLLABLE NAV ──────────────────────────────────────────── */}
       <ScrollArea className="min-h-0 flex-1">
         <nav
-          className={`flex flex-col gap-0.5 pb-4 ${collapsed ? "px-1.5" : "px-3"}`}
+          className={`flex flex-col pb-2 pt-2 ${collapsed ? "gap-1 px-1.5" : "gap-0.5 px-2"}`}
           aria-label="Sidebar Navigation"
         >
-          {/* Primary items */}
-          {primaryItems.map((item) => (
-            <button
-              key={item.label}
-              type="button"
-              onClick={() => handleNav(item.route)}
-              title={collapsed ? item.label : undefined}
-              className={`flex h-11 w-full items-center rounded-[10px] text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] group ${
-                collapsed ? "justify-center px-0" : "gap-3 px-3"
-              }`}
-            >
-              <img className="h-5 w-5 shrink-0 opacity-90 group-hover:opacity-100 transition-opacity duration-200" alt={item.iconAlt} src={item.iconSrc} />
-              {!collapsed && (
-                <span className="[font-family:'Inter',Helvetica] text-sm font-medium leading-5 tracking-[0] truncate">
-                  {item.label}
-                </span>
-              )}
-            </button>
-          ))}
+          {/* Primary: Get Started, Dashboard */}
+          {primaryItems.map((item) => {
+            const isActive = currentPath === item.route && item.route !== "/";
+            return (
+              <button
+                key={item.label}
+                type="button"
+                onClick={() => handleNav(item.route)}
+                title={collapsed ? item.label : undefined}
+                className={[
+                  "group flex h-10 w-full items-center rounded-lg text-white",
+                  "transition-all duration-200 active:scale-[0.98]",
+                  collapsed ? "justify-center px-0" : "gap-2.5 px-2.5",
+                  isActive ? "bg-white/20 font-medium" : "hover:bg-white/10",
+                ].join(" ")}
+              >
+                <img
+                  className="h-[18px] w-[18px] shrink-0 opacity-80 group-hover:opacity-100 transition-opacity duration-200"
+                  alt={item.iconAlt}
+                  src={item.iconSrc}
+                />
+                {!collapsed && (
+                  <span className="[font-family:'Inter',Helvetica] text-sm font-medium leading-5 truncate">
+                    {item.label}
+                  </span>
+                )}
+              </button>
+            );
+          })}
 
-          {/* Products accordion */}
+          {/* ── Products accordion ── */}
           <div className="mt-0.5">
             {collapsed ? (
               <button
                 type="button"
                 title="Products"
                 onClick={() => handleNav(isProductActive ? currentPath : "/courses")}
-                className={`flex h-11 w-full items-center justify-center rounded-[10px] transition-all duration-200 active:scale-[0.98] ${
-                  isProductActive ? "bg-white" : "hover:bg-white/10"
-                }`}
+                className={[
+                  "flex h-10 w-full items-center justify-center rounded-lg",
+                  "transition-all duration-200 active:scale-[0.98]",
+                  isProductActive ? "bg-white shadow-sm" : "hover:bg-white/10",
+                ].join(" ")}
               >
                 <img
-                  className="h-5 w-5 shrink-0"
+                  className="h-[18px] w-[18px] shrink-0"
                   alt="Products"
-                  src="https://c.animaapp.com/mojway8gcahMoK/img/tabler-icon-box.svg"
-                  style={isProductActive ? {} : { filter: "brightness(10)" }}
+                  src={`${CDN}/tabler-icon-box.svg`}
+                  style={isProductActive ? { filter: "invert(28%) sepia(98%) saturate(1500%) hue-rotate(196deg)" } : undefined}
                 />
               </button>
             ) : (
               <>
+                {/* Products toggle row */}
                 <button
                   type="button"
                   onClick={() => setProductsOpen((p) => !p)}
-                  className={`flex h-11 w-full items-center justify-between rounded-[10px] px-3 transition-all duration-200 active:scale-[0.98] ${
-                    isProductActive || productsOpen ? "bg-white hover:bg-white/95" : "bg-white/10 hover:bg-white/20"
-                  }`}
                   aria-expanded={productsOpen}
+                  className={[
+                    "flex h-10 w-full items-center justify-between rounded-lg px-2.5",
+                    "transition-all duration-200 active:scale-[0.98]",
+                    isProductActive || productsOpen
+                      ? "bg-white shadow-sm"
+                      : "hover:bg-white/10",
+                  ].join(" ")}
                 >
-                  <span className="flex items-center gap-3">
+                  <span className="flex items-center gap-2.5">
                     <img
-                      className="h-5 w-5 shrink-0"
-                      alt="Products box"
-                      src="https://c.animaapp.com/mojway8gcahMoK/img/tabler-icon-box.svg"
+                      className="h-[18px] w-[18px] shrink-0"
+                      alt="Products"
+                      src={`${CDN}/tabler-icon-box.svg`}
+                      style={
+                        isProductActive || productsOpen
+                          ? { filter: "invert(28%) sepia(98%) saturate(1500%) hue-rotate(196deg)" }
+                          : undefined
+                      }
                     />
-                    <span className={`[font-family:'Inter',Helvetica] text-sm font-medium leading-5 tracking-[0] ${
-                      isProductActive || productsOpen ? "text-[#0957a1]" : "text-white"
-                    }`}>
+                    <span
+                      className={[
+                        "[font-family:'Inter',Helvetica] text-sm font-semibold leading-5",
+                        isProductActive || productsOpen ? "text-[#0957a1]" : "text-white",
+                      ].join(" ")}
+                    >
                       Products
                     </span>
                   </span>
                   <ChevronDownIcon
-                    className={`h-4 w-4 shrink-0 transition-transform duration-300 ease-in-out ${
-                      isProductActive || productsOpen ? "text-[#0957a1]" : "text-white"
-                    } ${productsOpen ? "rotate-180" : "rotate-0"}`}
+                    className={[
+                      "h-4 w-4 shrink-0 transition-transform duration-300 ease-in-out",
+                      isProductActive || productsOpen ? "text-[#0957a1]" : "text-white/70",
+                      productsOpen ? "rotate-180" : "rotate-0",
+                    ].join(" ")}
                   />
                 </button>
 
+                {/* Products children */}
                 <div
-                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    productsOpen ? "max-h-[700px] opacity-100" : "max-h-0 opacity-0"
-                  }`}
+                  className={[
+                    "overflow-hidden transition-all duration-300 ease-in-out",
+                    productsOpen ? "max-h-[900px] opacity-100" : "max-h-0 opacity-0",
+                  ].join(" ")}
                 >
-                  <div className="flex flex-col gap-0.5 pl-3 pt-1">
+                  <div className="flex flex-col gap-[1px] pl-3.5 pr-1 pt-0.5 pb-1">
                     {productChildren.map((item) => {
                       const isActive = currentPath === item.route && item.route !== "/";
                       return (
@@ -217,16 +269,18 @@ export const SharedSidebar = (): JSX.Element => {
                           key={item.label}
                           type="button"
                           onClick={() => handleNav(item.route)}
-                          className={`flex h-9 w-full items-center rounded-[8px] px-4 text-left text-sm text-white transition-all duration-150 active:scale-[0.98] ${
+                          className={[
+                            "group flex h-8 w-full items-center rounded-md px-2.5 text-left",
+                            "transition-all duration-150 active:scale-[0.98]",
                             isActive
-                              ? "bg-[rgba(0,50,97,0.70)] font-semibold"
-                              : "hover:bg-white/15 font-normal"
-                          }`}
+                              ? "bg-white/25 text-white font-semibold"
+                              : "text-white/80 hover:bg-white/12 hover:text-white font-normal",
+                          ].join(" ")}
                         >
                           {isActive && (
-                            <span className="mr-2 h-1.5 w-1.5 shrink-0 rounded-full bg-white inline-block" />
+                            <span className="mr-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-white inline-block flex-shrink-0" />
                           )}
-                          <span className="[font-family:'Inter',Helvetica] text-sm leading-5 tracking-[0] truncate">
+                          <span className="[font-family:'Inter',Helvetica] text-[13px] leading-5 truncate">
                             {item.label}
                           </span>
                         </button>
@@ -238,28 +292,34 @@ export const SharedSidebar = (): JSX.Element => {
             )}
           </div>
 
-          {/* Secondary nav items */}
-          <div className="mt-1 flex flex-col gap-0.5">
+          {/* ── Secondary nav ── */}
+          <div className="mt-0.5 flex flex-col gap-0.5">
             {secondaryItems.map((item) => (
               <button
                 key={item.label}
                 type="button"
                 title={collapsed ? item.label : undefined}
                 onClick={() => handleNav(item.route)}
-                className={`flex h-11 w-full items-center rounded-[10px] px-3 text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] group ${
-                  collapsed ? "justify-center px-0" : "justify-between"
-                }`}
+                className={[
+                  "group flex h-10 w-full items-center rounded-lg text-white",
+                  "transition-all duration-200 hover:bg-white/10 active:scale-[0.98]",
+                  collapsed ? "justify-center px-0" : "justify-between px-2.5",
+                ].join(" ")}
               >
-                <span className={`flex items-center ${collapsed ? "" : "gap-3"}`}>
-                  <img className="h-5 w-5 shrink-0 opacity-90 group-hover:opacity-100 transition-opacity duration-200" alt={item.iconAlt} src={item.iconSrc} />
+                <span className={`flex items-center ${collapsed ? "" : "gap-2.5"}`}>
+                  <img
+                    className="h-[18px] w-[18px] shrink-0 opacity-75 group-hover:opacity-100 transition-opacity duration-200"
+                    alt={item.iconAlt}
+                    src={item.iconSrc}
+                  />
                   {!collapsed && (
-                    <span className="[font-family:'Inter',Helvetica] text-sm font-medium leading-5 tracking-[0] truncate">
+                    <span className="[font-family:'Inter',Helvetica] text-sm font-medium leading-5 truncate">
                       {item.label}
                     </span>
                   )}
                 </span>
                 {!collapsed && !item.noChevron && (
-                  <ChevronDownIcon className="h-4 w-4 shrink-0 opacity-60 group-hover:opacity-100 transition-opacity duration-200" />
+                  <ChevronDownIcon className="h-4 w-4 shrink-0 text-white/40 group-hover:text-white/70 transition-colors duration-200" />
                 )}
               </button>
             ))}
@@ -267,22 +327,24 @@ export const SharedSidebar = (): JSX.Element => {
         </nav>
       </ScrollArea>
 
-      {/* ── Log out footer ── */}
-      <div className="border-t border-white/10 px-3 py-3">
+      {/* ── LOG OUT ────────────────────────────────────────────────────── */}
+      <div className={`border-t border-white/10 ${collapsed ? "px-1.5 py-2" : "px-2 py-2"}`}>
         <button
           type="button"
           title={collapsed ? "Log out" : undefined}
-          className={`flex h-11 w-full items-center gap-3 rounded-[10px] px-3 text-white transition-all duration-200 hover:bg-white/10 active:scale-[0.98] group ${
-            collapsed ? "justify-center px-0" : ""
-          }`}
+          className={[
+            "group flex h-10 w-full items-center gap-2.5 rounded-lg text-white",
+            "transition-all duration-200 hover:bg-white/10 active:scale-[0.98]",
+            collapsed ? "justify-center px-0" : "px-2.5",
+          ].join(" ")}
         >
           <img
-            className="h-5 w-5 shrink-0 opacity-90 group-hover:opacity-100 transition-opacity duration-200"
+            className="h-[18px] w-[18px] shrink-0 opacity-75 group-hover:opacity-100 transition-opacity duration-200"
             alt="Log out"
-            src="https://c.animaapp.com/mojway8gcahMoK/img/log-in-2.svg"
+            src="https://c.animaapp.com/mol4q7i3vDM2gr/img/log-in-2.svg"
           />
           {!collapsed && (
-            <span className="[font-family:'Inter',Helvetica] text-sm font-medium leading-5 tracking-[0]">
+            <span className="[font-family:'Inter',Helvetica] text-sm font-medium leading-5">
               Log out
             </span>
           )}
