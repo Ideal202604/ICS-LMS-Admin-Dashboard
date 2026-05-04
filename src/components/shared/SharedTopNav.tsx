@@ -25,6 +25,7 @@ const SEARCH_ITEMS = [
   { label: "Create Live Class", path: "/create-live-class", keywords: "create live class schedule new event" },
   { label: "Mock Test Listing", path: "/mock-test-listing", keywords: "mock test listing table sessions courses" },
   { label: "Mock Test Builder", path: "/mock-test-form-builder-figma", keywords: "figma form builder questions responses settings" },
+  { label: "Survey Builder", path: "/mock-test-survey-builder", keywords: "survey form builder questions responses settings publish" },
 ];
 
 function matchItems(query: string) {

@@ -30,6 +30,7 @@ const productChildren = [
   { label: "Mock Test",       route: "/mock-test" },
   { label: "Mock Test Form",  route: "/mock-test-questions" },
   { label: "Mock Test Builder", route: "/mock-test-form-builder-figma" },
+  { label: "Survey Builder", route: "/mock-test-survey-builder" },
   { label: "Question Editor", route: "/mock-test-question-editor" },
   { label: "Test Series",     route: "/test-series" },
   { label: "Bundles",         route: "/bundles" },

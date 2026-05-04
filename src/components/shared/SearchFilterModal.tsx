@@ -47,6 +47,7 @@ const SEARCH_ITEMS: SearchItem[] = [
   { label: "Mock Test Listing", path: "/mock-test-listing", keywords: "mock test listing table sessions", category: "assessment" },
   { label: "Mock Test Overview", path: "/mock-test-overview", keywords: "mock test overview details", category: "assessment" },
   { label: "Mock Test Builder", path: "/mock-test-builder", keywords: "mock test builder create", category: "assessment" },
+  { label: "Survey Builder", path: "/mock-test-survey-builder", keywords: "survey form builder questions responses settings publish", category: "assessment" },
   { label: "Mock Test Editor", path: "/mock-test-editor", keywords: "mock test editor edit", category: "assessment" },
   { label: "Mock Test Form", path: "/mock-test-form", keywords: "mock test fill form builder", category: "assessment" },
 ];

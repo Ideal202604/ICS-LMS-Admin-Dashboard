@@ -30,6 +30,7 @@ const MockTestOverview = lazy(() => import("./screens/MockTestOverviewV3").then(
 const MockTestFormBuilder = lazy(() => import("./screens/MockTestFormBuilder").then(m => ({ default: m.MockTestFormBuilder })));
 const MockTestFormBuilderV2 = lazy(() => import("./screens/MockTestFormBuilderV2").then(m => ({ default: m.MockTestFormBuilderV2 })));
 const MockTestFigmaBuilder = lazy(() => import("./screens/MockTestFigmaBuilder").then(m => ({ default: m.MockTestFigmaBuilder })));
+const MockTestSurveyBuilder = lazy(() => import("./screens/MockTestSurveyBuilder").then(m => ({ default: m.MockTestSurveyBuilder })));
 const MockTestListing = lazy(() => import("./screens/MockTestListing").then(m => ({ default: m.MockTestListing })));
 const CreateMockTest = lazy(() => import("./screens/CreateMockTest").then(m => ({ default: m.CreateMockTest })));
 const MockTestBuilder = lazy(() => import("./screens/MockTestBuilder").then(m => ({ default: m.MockTestBuilder })));
@@ -40,6 +41,8 @@ const MockTestFillForm = lazy(() => import("./screens/MockTestFillForm").then(m 
 const MockTestSetting = lazy(() => import("./screens/MockTestSetting").then(m => ({ default: m.MockTestSetting })));
 const MockTestFillthe = lazy(() => import("./screens/MockTestFillthe").then(m => ({ default: m.MockTestFillthe })));
 const MockTestDetails = lazy(() => import("./screens/MockTestDetails").then(m => ({ default: m.MockTestDetails })));
+const MockTestAccepting = lazy(() => import("./screens/MockTestAccepting").then(m => ({ default: m.MockTestAccepting })));
+const MockTestResponses = lazy(() => import("./screens/MockTestResponses").then(m => ({ default: m.MockTestResponses })));
 
 /* ─── Loading fallback ─── */
 function LoadingFallback() {
@@ -87,8 +90,11 @@ createRoot(document.getElementById("app") as HTMLElement).render(
           <Route path="/mock-test-builder" element={<MockTestBuilder />} />
           <Route path="/mock-test-editor" element={<MockTestEditor />} />
           <Route path="/mock-test-form" element={<MockTestForm />} />
+          <Route path="/mock-test-accepting" element={<MockTestAccepting />} />
+          <Route path="/mock-test-responses" element={<MockTestResponses />} />
           <Route path="/mock-test-form-builder" element={<MockTestFormBuilderV2 />} />
           <Route path="/mock-test-form-builder-figma" element={<MockTestFigmaBuilder />} />
+          <Route path="/mock-test-survey-builder" element={<MockTestSurveyBuilder />} />
           <Route path="/mock-test-form-builder-legacy" element={<MockTestFormBuilder />} />
           <Route path="/mock-test-question-editor" element={<MockTestQuestionEditor />} />
           <Route path="/mock-test-fill-form" element={<MockTestFillForm />} />

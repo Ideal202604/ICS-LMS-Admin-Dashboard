@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:500,400,300,italic|Inter:400,600");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -44,6 +46,7 @@
   --sub-heading: rgba(75, 85, 99, 1);
   --shadow-xs: 0px 1px 2px 0px rgba(18, 26, 43, 0.05);
   --ics-global-191924learnystcomcatskill-white: rgba(228, 233, 242, 1);
+  --ics-global-191924learnystcomcape-cod: rgba(60, 64, 67, 1);
 }
 
 :root {

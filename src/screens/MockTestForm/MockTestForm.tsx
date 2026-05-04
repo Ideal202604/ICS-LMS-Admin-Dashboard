@@ -85,7 +85,10 @@ export const MockTestForm = (): JSX.Element => {
                 />
                 <Button
                   type="button"
-                  onClick={() => setPublished((p) => !p)}
+                  onClick={() => {
+                    setPublished(true);
+                    navigate("/mock-test-accepting");
+                  }}
                   className={[
                     "h-auto rounded-lg border px-4 py-2 text-base font-medium [font-family:'Roboto',Helvetica] transition-all duration-200 active:scale-[0.97]",
                     published
