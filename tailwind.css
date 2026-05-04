@@ -40,7 +40,10 @@
   --caption-small-medium-font-weight: 500;
   --caption-small-medium-letter-spacing: 0px;
   --caption-small-medium-line-height: 18px;
+  --heading: rgba(17, 24, 39, 1);
+  --sub-heading: rgba(75, 85, 99, 1);
   --shadow-xs: 0px 1px 2px 0px rgba(18, 26, 43, 0.05);
+  --ics-global-191924learnystcomcatskill-white: rgba(228, 233, 242, 1);
 }
 
 :root {

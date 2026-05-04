@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { MenuIcon, X, SearchIcon, BellIcon, ChevronDownIcon, ZapIcon } from "lucide-react";
 import { useSidebar, SIDEBAR_EXPANDED, SIDEBAR_COLLAPSED, NAVBAR_HEIGHT } from "./AppLayout";
+import { SearchFilterModal } from "./SearchFilterModal";
 
 /* ─── Search catalogue ───────────────────────────────────────────────────── */
 const SEARCH_ITEMS = [
@@ -9,6 +10,7 @@ const SEARCH_ITEMS = [
   { label: "Courses",           path: "/courses",           keywords: "lessons curriculum content video" },
   { label: "Live Classes",      path: "/live-classes",      keywords: "live session webinar stream" },
   { label: "Mock Test",         path: "/mock-test",         keywords: "practice exam quiz assessment" },
+  { label: "Question Editor",   path: "/mock-test-question-editor", keywords: "mock test question editor add questions numerical assessment" },
   { label: "Test Series",       path: "/test-series",       keywords: "series set exam tests batch" },
   { label: "Bundles",           path: "/bundles",           keywords: "bundle pack collection group combo" },
   { label: "Poll",              path: "/poll",              keywords: "poll vote survey opinion" },
@@ -22,6 +24,7 @@ const SEARCH_ITEMS = [
   { label: "Fill Info",         path: "/fill-info",         keywords: "fill info course content sections" },
   { label: "Create Live Class", path: "/create-live-class", keywords: "create live class schedule new event" },
   { label: "Mock Test Listing", path: "/mock-test-listing", keywords: "mock test listing table sessions courses" },
+  { label: "Mock Test Builder", path: "/mock-test-form-builder-figma", keywords: "figma form builder questions responses settings" },
 ];
 
 function matchItems(query: string) {
@@ -55,6 +58,7 @@ export const SharedTopNav = (): JSX.Element => {
   const [searchValue,      setSearchValue]      = useState("");
   const [activeIndex,      setActiveIndex]      = useState(-1);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const [filterModalOpen,  setFilterModalOpen]  = useState(false);
 
   const navigate = useNavigate();
   const { openMobile, toggleCollapsed, collapsed } = useSidebar();
@@ -236,6 +240,20 @@ export const SharedTopNav = (): JSX.Element => {
                     <X className="h-3.5 w-3.5" />
                   </button>
                 )}
+                {!searchValue && (
+                  <button
+                    type="button"
+                    aria-label="Open search filter"
+                    onClick={() => setFilterModalOpen(true)}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 flex h-6 w-6 items-center justify-center text-gray-400 transition-all duration-200 hover:text-gray-600 hover:scale-110 active:scale-90"
+                  >
+                    <img
+                      className="h-5 w-5 opacity-60"
+                      alt="Filter"
+                      src="https://c.animaapp.com/moqria3eJOcoRY/img/mage-filter.svg"
+                    />
+                  </button>
+                )}
 
                 {/* Desktop dropdown */}
                 {showDropdown && searchFocused && (
@@ -338,6 +356,9 @@ export const SharedTopNav = (): JSX.Element => {
           </div>
         </div>
       </header>
+
+      {/* ── Search & Filter Modal ── */}
+      <SearchFilterModal open={filterModalOpen} onClose={() => setFilterModalOpen(false)} />
 
       {/* ── Mobile full-screen search overlay ── */}
       <div

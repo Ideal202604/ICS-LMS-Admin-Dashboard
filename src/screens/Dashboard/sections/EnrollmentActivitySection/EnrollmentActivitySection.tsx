@@ -4,22 +4,22 @@ import { Separator } from "../../../../components/ui/separator";
 const activities = [
   {
     title: "New enrollment",
-    description: "Sarah Johnson enrolled in complete Web Dvelopment",
+    description: "Sarah Johnson enrolled in complete Web Development",
     time: "5 minutes ago",
   },
   {
     title: "New enrollment",
-    description: "Sarah Johnson enrolled in complete Web Dvelopment",
+    description: "Sarah Johnson enrolled in complete Web Development",
     time: "5 minutes ago",
   },
   {
     title: "New enrollment",
-    description: "Sarah Johnson enrolled in complete Web Dvelopment",
+    description: "Sarah Johnson enrolled in complete Web Development",
     time: "5 minutes ago",
   },
   {
     title: "New enrollment",
-    description: "Sarah Johnson enrolled in complete Web Dvelopment",
+    description: "Sarah Johnson enrolled in complete Web Development",
     time: "3 hours ago",
   },
 ];

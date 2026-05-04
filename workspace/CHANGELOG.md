@@ -18,6 +18,27 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+## 2026-05-04 (session 15)
+- Build timeout AGAIN after plugin removal — no config conflicts, no circular deps found
+- Root cause: 35+ eager screen imports overwhelm Sandpack's single-pass bundler within 30s
+- Fix: converted all route imports to `React.lazy()` + `Suspense` for code-splitting
+- Added `LoadingFallback` spinner component inline in `src/index.tsx`
+- Modified: `src/index.tsx`
+
+## 2026-05-04 (session 14)
+- Build timeout AGAIN: both `tailwind.config.js` + `.cjs` AND `postcss.config.js` + `.cjs` reappeared
+- Deleted stale `.js` variants (ESM/CJS mismatch under `"type":"module"`) to leave only `.cjs` files
+- Root cause: previous operations recreated the `.js` files that had been deleted in sessions 12-13
+
+## 2026-05-02 (session 13)
+- Build timeout: `postcss.config.js` (stale ESM, no autoprefixer) coexisted with `postcss.config.cjs`
+- Vite discovered both PostCSS configs and stalled — deleted `postcss.config.js` to leave only `.cjs`
+
+## 2026-05-02 (session 12)
+- Fixed build timeout: `tailwind.config.js` used CJS `module.exports` but `package.json` has `"type":"module"`
+- Renamed to `tailwind.config.cjs` so Node treats it as unambiguous CommonJS (same fix pattern as `postcss.config.cjs`)
+- Deleted `tailwind.config.js`, created `tailwind.config.cjs`
+
 ## 2026-05-02 (session 11)
 - Removed duplicate MockTestOverview (V1+V2) and MockTestEditorV2 — 10 files deleted
 - Consolidated `/mock-test-overview` → MockTestOverviewV3, `/mock-test-editor` → MockTestEditorV3

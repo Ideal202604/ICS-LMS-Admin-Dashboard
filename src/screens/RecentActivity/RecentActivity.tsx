@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppLayout } from "../../components/shared";
 import { Button } from "../../components/ui/button";
@@ -6,6 +7,7 @@ import { Tabs, TabsList, TabsTrigger } from "../../components/ui/tabs";
 import { EventDetailsSection } from "./sections/EventDetailsSection";
 import { EventHeaderSection } from "./sections/EventHeaderSection";
 import { GuestAccessSection } from "./sections/GuestAccessSection";
+import { ImportConfirmationNotification } from "./sections/ImportConfirmationNotification";
 
 const topControls = [
   {
@@ -26,9 +28,14 @@ const topControls = [
 
 export const RecentActivity = (): JSX.Element => {
   const navigate = useNavigate();
+  const [showImportNotification, setShowImportNotification] = useState(false);
 
   return (
     <AppLayout className="bg-[#f8f8f8]">
+      <ImportConfirmationNotification
+        open={showImportNotification}
+        onClose={() => setShowImportNotification(false)}
+      />
       <section className="flex min-w-0 flex-1 flex-col px-3 py-4 sm:px-4 lg:px-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
         <main className="w-full bg-transparent">
           <Card className="mx-auto w-full max-w-[1068px] rounded-[10px] border-[0.5px] border-gray-300 bg-[#f1f3f4] shadow-none">
@@ -124,10 +131,18 @@ export const RecentActivity = (): JSX.Element => {
                   </section>
 
                   {/* Footer */}
-                  <footer className="flex justify-end pt-1">
+                  <footer className="flex justify-end gap-3 pt-1">
                     <Button
                       type="button"
-                      className="h-auto rounded-lg border border-gray-300 bg-[#0957a1] px-4 py-2 [font-family:'Roboto',Helvetica] text-base font-bold leading-6 tracking-[0] text-white hover:bg-[#0957a1]"
+                      variant="outline"
+                      onClick={() => setShowImportNotification(true)}
+                      className="h-auto rounded-lg border border-gray-300 bg-transparent px-4 py-2 [font-family:'Roboto',Helvetica] text-base font-bold leading-6 tracking-[0] text-[#0957a1] transition-all duration-200 hover:bg-[#0957a1]/5 hover:shadow-sm active:scale-[0.97]"
+                    >
+                      Import Questions
+                    </Button>
+                    <Button
+                      type="button"
+                      className="h-auto rounded-lg border border-gray-300 bg-[#0957a1] px-4 py-2 [font-family:'Roboto',Helvetica] text-base font-bold leading-6 tracking-[0] text-white transition-all duration-200 hover:bg-[#0957a1]/90 hover:shadow-md active:scale-[0.97]"
                     >
                       Save
                     </Button>
